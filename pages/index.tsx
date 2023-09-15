@@ -87,7 +87,7 @@ export default function Home() {
               </div>
             ) : (
               <div className="flex flex-col mt-8 items-center justify-center mb-12">
-                <p className="text-sm mb-2">(go play some music!)</p>
+                <p className="text-sm mb-2">(play some music!)</p>
               </div>
             )}
           </div>
