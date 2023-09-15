@@ -79,14 +79,16 @@ export default function Home() {
                 </h3>
                 <p className="text-xs mb-2">(click on one)</p>
                 {/* <button onClick={() => fetch("/api/pause-song")}>Pause</button> */}
-                {songData?.map((track: any) => (
-                  <div className="mt-2">
+                {songData?.map((track: any, index: any) => (
+                  <div key={index} className="mt-2">
                     <SmallSongDisplay track={track} />
                   </div>
                 ))}
               </div>
             ) : (
-              <div></div>
+              <div className="flex flex-col mt-8 items-center justify-center mb-12">
+                <p className="text-sm mb-2">(go play some music!)</p>
+              </div>
             )}
           </div>
         ) : (
