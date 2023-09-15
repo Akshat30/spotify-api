@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
+import { authOptions } from "./auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 const REC_ENDPOINT = `https://api.spotify.com/v1/recommendations?`;
 
@@ -12,7 +14,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
       id = query.id;
   }
-  const sess = await getSession({ req });
+  const sess = await getServerSession(req, res, authOptions);
   const accesstoken = sess?.accessToken;
 
   if (req.method === "GET") {
