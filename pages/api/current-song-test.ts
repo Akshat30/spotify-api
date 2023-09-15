@@ -7,40 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const sess = await getSession({ req });
   const accesstoken = sess?.accessToken;
 
-  if (req.method === "GET") {
-    const response = await getNowPlaying(accesstoken!);
-    const parsed = await response.json();
-    if (
-      response.status === 204 ||
-      response.status > 400 ||
-      parsed.currently_playing_type !== "track"
-    ) {
-      //? s-maxage=180 because song usually lasts 3 minutes
-      res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=180, stale-while-revalidate=90"
-      );
-      return res.status(200).json(response.status);
-    }
-
-    const data = {
-      isPlaying: parsed.is_playing,
-      id: parsed.item.id,
-      title: parsed.item.name,
-      album: parsed.item.album.name,
-      artist: parsed.item.album.artists
-        .map((artist: any) => artist.name)
-        .join(", "),
-      albumImageUrl: parsed.item.album.images[0].url,
-      songUrl: parsed.item.external_urls.spotify,
-    };
-
-    res.setHeader(
-      "Cache-Control",
-      "public, s-maxage=180, stale-while-revalidate=90"
-    );
-    return res.status(200).json(data);
-  }
+  return res.status(200).json(sess);
 };
 
 export default handler;
@@ -54,11 +21,13 @@ export const getNowPlaying = async (refresh_token: string) => {
       },
     });
 
+
     if (response.status === 401) {
       console.log("couldn't get current song");
       return response;
     }
 
+    
     if (!response.ok) {
       // Handle error response here if needed
       throw new Error(`Request failed with status: ${response.status}`);
