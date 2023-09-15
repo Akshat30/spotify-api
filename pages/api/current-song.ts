@@ -12,18 +12,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     const response = await getNowPlaying(accesstoken!);
     const parsed = await response.json();
-    if (
-      response.status === 204 ||
-      response.status > 400 ||
-      parsed.currently_playing_type !== "track"
-    ) {
-      //? s-maxage=180 because song usually lasts 3 minutes
-      res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=180, stale-while-revalidate=90"
-      );
-      return res.status(200).json({ isPlaying: false });
-    }
+    // if (
+    //   response.status === 204 ||
+    //   response.status > 400 ||
+    //   parsed.currently_playing_type !== "track"
+    // ) {
+    //   //? s-maxage=180 because song usually lasts 3 minutes
+    //   res.setHeader(
+    //     "Cache-Control",
+    //     "public, s-maxage=180, stale-while-revalidate=90"
+    //   );
+    //   return res.status(200).json({ isPlaying: false });
+    // }
 
     const data = {
       isPlaying: parsed.is_playing,
