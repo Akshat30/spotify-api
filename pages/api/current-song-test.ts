@@ -1,13 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const sess = await getSession({ req });
-  const accesstoken = sess?.accessToken;
+  const sess = useSession();
+  const accesstoken = sess?.data?.accessToken;
 
-  return res.status(200).json(sess);
+  return res.status(200).json(sess.data);
 };
 
 export default handler;
