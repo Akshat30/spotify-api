@@ -7,6 +7,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const sess = await getSession({ req });
   const accesstoken = sess?.accessToken;
 
+  console.log(accesstoken);
   return res.status(200).json("bruh");
 };
 
