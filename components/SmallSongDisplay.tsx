@@ -6,7 +6,7 @@ export default function SmallSongDisplay({ track }: { track: any }) {
   return (
     <button
       onClick={() => fetch("/api/play-song?uri=" + track.uri)}
-      className="flex relative text-left bg-gray-900 items-center space-x-4 w-72 rounded-lg hover:bg-gray-800 transition duration-300"
+      className="flex relative text-left bg-neutral-900 items-center space-x-4 w-72 rounded-lg hover:bg-neutral-800 transition duration-300"
     >
       <div className="w-12">
         <img

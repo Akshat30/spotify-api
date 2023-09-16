@@ -11,7 +11,7 @@ export default function CurrentSong({track}:{track:any}) {
           ? track.songUrl
           : "https://open.spotify.com/user/31kdt6sl2iasi2mhtuxdpkqqscoa?si=75a37c65ed884222"
       }
-      className="flex relative bg-gray-900 items-center space-x-4 w-72 rounded-lg hover:bg-gray-800 transition duration-300"
+      className="flex relative bg-neutral-900 items-center space-x-4 w-72 rounded-lg hover:bg-neutral-800 transition duration-300"
     >
       <div className="w-16">
         {track?.isPlaying ? (
