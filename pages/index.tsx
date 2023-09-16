@@ -57,7 +57,7 @@ export default function Home() {
         {session.status === "authenticated" ? (
           <div className="mt-4">
             <div className="flex mt-4 items-center justify-center">
-              <SignButton signin={false}>
+              <SignButton signin={false} disabled={false}>
                 Sign out {session.data.user?.email}
               </SignButton>
             </div>
@@ -89,7 +89,9 @@ export default function Home() {
           </div>
         ) : (
           <div className="flex mt-4 items-center justify-center">
-            <SignButton signin={true}>Sign in with Spotify</SignButton>
+            <SignButton disabled={session.status === "loading"} signin={true}>
+              Sign in with Spotify
+            </SignButton>
           </div>
         )}
       </div>
