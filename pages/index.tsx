@@ -46,11 +46,11 @@ export default function Home() {
           src={session.data.user?.image || ""}
         />
       ) : null}
-      <h1 className="text-4xl text-green-300 font-semibold">
-        Welcome,{" "}
+      <h1 className="-mt-24 text-4xl text-green-300 font-semibold">
+        Welcome
         {session.status === "authenticated"
-          ? session.data.user?.name || "friend"
-          : "stranger"}
+          ? " " + session.data.user?.name || " friend"
+          : ""}
         !
       </h1>
       <div>
