@@ -26,6 +26,9 @@ export const getTopSongs = async (refresh_token: string) => {
       headers: {
         Authorization: `Bearer ${refresh_token}`,
       },
+      body: JSON.stringify({
+        limit: 10,
+      }),
     });
 
     if (!response.ok) {
