@@ -28,10 +28,11 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <h1 className="text-4xl text-green-300 font-semibold">
-        {session.status === "authenticated"
+        {/* {session.status === "authenticated"
           ? session.data.user?.name || "friend"
           : "stranger"}
-        &apos;s top songs of all time:
+        &apos;s */}
+        top songs of all time:
       </h1>
       <div>
         {session.status === "authenticated" ? (
