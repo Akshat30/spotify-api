@@ -1,9 +1,10 @@
 import * as React from "react";
 import CurrentSong from "@/components/CurrentSong";
 import SmallSongDisplay from "@/components/SmallSongDisplay";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
+import SignButton from "@/components/SignButton";
 
 export default function Home() {
   const session = useSession();
@@ -56,13 +57,9 @@ export default function Home() {
         {session.status === "authenticated" ? (
           <div className="mt-4">
             <div className="flex mt-4 items-center justify-center">
-              <button
-                className="bg-green-500 text-sm sm:text-lg hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
-                type="button"
-                onClick={() => signOut()}
-              >
+              <SignButton signin={false}>
                 Sign out {session.data.user?.email}
-              </button>
+              </SignButton>
             </div>
 
             <div className="flex flex-col mt-8 items-center justify-center">
@@ -71,13 +68,13 @@ export default function Home() {
               </h3>
               <CurrentSong track={data} />
             </div>
+
             {data?.isPlaying ? (
               <div className="flex flex-col mt-8 items-center justify-center mb-12">
                 <h3 className="text-xl text-white-300 font-semibold mb-2">
                   Try listening to these songs:
                 </h3>
                 <p className="text-xs mb-2">(click on one)</p>
-                {/* <button onClick={() => fetch("/api/pause-song")}>Pause</button> */}
                 {songData?.map((track: any, index: any) => (
                   <div key={index} className="mt-2">
                     <SmallSongDisplay track={track} />
@@ -92,14 +89,7 @@ export default function Home() {
           </div>
         ) : (
           <div className="flex mt-4 items-center justify-center">
-            <button
-              type="button"
-              className="bg-green-500 text-sm sm:text-lg hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
-              onClick={() => signIn("spotify")}
-              disabled={session.status === "loading"}
-            >
-              Sign in with Spotify
-            </button>
+            <SignButton signin={true}>Sign in with Spotify</SignButton>
           </div>
         )}
       </div>
