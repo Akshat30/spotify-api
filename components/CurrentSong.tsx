@@ -9,7 +9,7 @@ export default function CurrentSong({track}:{track:any}) {
       href={
         track?.isPlaying
           ? track.songUrl
-          : "https://open.spotify.com/user/erence21?si=yTsrZT5JSHOp7tn3ist7Ig"
+          : "https://open.spotify.com/user/31kdt6sl2iasi2mhtuxdpkqqscoa?si=75a37c65ed884222"
       }
       className="flex relative bg-gray-900 items-center space-x-4 w-72 rounded-lg hover:bg-gray-800 transition duration-300"
     >

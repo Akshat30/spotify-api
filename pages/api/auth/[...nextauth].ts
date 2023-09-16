@@ -1,22 +1,28 @@
-import NextAuth, { NextAuthOptions } from 'next-auth'
-import SpotifyProvider from 'next-auth/providers/spotify'
-import { JWT } from 'next-auth/jwt'
-import axios from 'axios'
+import NextAuth, { NextAuthOptions } from "next-auth";
+import SpotifyProvider from "next-auth/providers/spotify";
+import { JWT } from "next-auth/jwt";
+import axios from "axios";
 
 // pages/api/auth/[...nextauth].ts
-const SPOTIFY_REFRESH_TOKEN_URL = 'https://accounts.spotify.com/api/token'
-const CLIENT_ID = process.env.SPOTIFY_ID
-const CLIENT_SECRET = process.env.SPOTIFY_SECRET
-const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString('base64');
-
-
+const SPOTIFY_REFRESH_TOKEN_URL = "https://accounts.spotify.com/api/token";
+const CLIENT_ID = process.env.SPOTIFY_ID;
+const CLIENT_SECRET = process.env.SPOTIFY_SECRET;
+const basic = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64");
+const SCOPES = [
+  "user-read-email",
+  "playlist-read-private",
+  "user-read-currently-playing",
+  "user-library-read",
+  "user-modify-playback-state",
+  "user-top-read",
+].join();
 
 export const authOptions: NextAuthOptions = {
   providers: [
     SpotifyProvider({
       clientId: process.env.SPOTIFY_ID!,
       clientSecret: process.env.SPOTIFY_SECRET!,
-      authorization: `https://accounts.spotify.com/authorize?scope=user-read-email,playlist-read-private,user-read-currently-playing,user-library-read,user-modify-playback-state`,
+      authorization: `https://accounts.spotify.com/authorize?scope=` + SCOPES,
     }),
   ],
   callbacks: {
@@ -46,34 +52,33 @@ export const authOptions: NextAuthOptions = {
 
 export default NextAuth(authOptions);
 
-
 async function refreshAccessToken(token: JWT): Promise<JWT> {
   try {
     const basicAuth = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString(
-      'base64'
-    )
+      "base64"
+    );
     const { data } = await axios.post(
       SPOTIFY_REFRESH_TOKEN_URL,
       {
-        grant_type: 'refresh_token',
+        grant_type: "refresh_token",
         refresh_token: token.refreshToken,
       },
       {
         headers: {
           Authorization: `Basic ${basicAuth}`,
-          'Content-Type': 'application/x-www-form-urlencoded',
+          "Content-Type": "application/x-www-form-urlencoded",
         },
       }
-    )
+    );
     return {
       ...token,
       accessToken: data.access_token,
       accessTokenExpires: Date.now() + data.expires_in * 1000,
-    }
+    };
   } catch (error) {
     return {
       ...token,
-      error: 'RefreshAccessTokenError',
-    }
+      error: "RefreshAccessTokenError",
+    };
   }
 }
