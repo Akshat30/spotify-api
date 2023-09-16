@@ -30,18 +30,19 @@ export default function Home() {
       <h1 className="text-4xl text-green-300 font-semibold">
         {session.status === "authenticated"
           ? session.data.user?.name || "friend"
-          : "stranger"}'s top songs!
+          : "stranger"}
+        &apos;s top songs!
       </h1>
       <div>
         {session.status === "authenticated" ? (
           <div className="mt-4">
-              <div className="flex flex-col mt-8 items-center justify-center mb-12">
-                {/* {songData?.map((track: any, index: any) => (
+            <div className="flex flex-col mt-8 items-center justify-center mb-12">
+              {/* {songData?.map((track: any, index: any) => (
                   <div key={index} className="mt-2">
                     <SmallSongDisplay track={track} />
                   </div>
                 ))} */}
-              </div>
+            </div>
           </div>
         ) : (
           <div className="flex mt-4 items-center justify-center">

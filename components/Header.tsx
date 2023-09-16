@@ -24,7 +24,7 @@ const Header = () => {
               className="block text-left font-general-semibold duration-300 text-xl mt-2 text-primary-dark dark:text-ternary-light hover:text-green-600 dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2"
               aria-label="Projects"
             >
-              aj's spotify playground
+              aj&apos;s spotify playground
             </Link>
           </div>
 
