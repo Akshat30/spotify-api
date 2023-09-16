@@ -17,7 +17,6 @@ export default function Home() {
   useEffect(() => {
     if (data && data.isPlaying) {
       // Fetch song recommendations when data is available and isPlaying is true
-
       fetch("/api/get-recommendations?id=" + data.id)
         .then((response) => {
           if (!response.ok) {
@@ -70,7 +69,7 @@ export default function Home() {
               <h3 className="text-xl text-white-300 font-semibold mb-2">
                 Currently listening to:
               </h3>
-              <CurrentSong data={data} />
+              <CurrentSong track={data} />
             </div>
             {data?.isPlaying ? (
               <div className="flex flex-col mt-8 items-center justify-center mb-12">
@@ -104,11 +103,6 @@ export default function Home() {
           </div>
         )}
       </div>
-
-      {/* <h1 className="text-3xl font-bold text-center text-green-00 mb-8">
-        You are currently listening to:
-      </h1>
-      <CurrentSong /> */}
     </div>
   );
 }
