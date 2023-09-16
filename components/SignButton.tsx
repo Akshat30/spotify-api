@@ -14,7 +14,7 @@ export default function SignButton({
     <button
       className="bg-green-500 text-sm sm:text-lg hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
       type="button"
-      onClick={signin ? () => signIn() : () => signOut()}
+      onClick={signin ? () => signIn("spotify") : () => signOut()}
       disabled={disabled}
     >
       {children}
