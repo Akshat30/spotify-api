@@ -31,17 +31,17 @@ export default function Home() {
         {session.status === "authenticated"
           ? session.data.user?.name || "friend"
           : "stranger"}
-        &apos;s top songs:
+        &apos;s top songs of all time:
       </h1>
       <div>
         {session.status === "authenticated" ? (
           <div className="mt-4">
             <div className="flex flex-col mt-8 items-center justify-center mb-12">
               {songData?.map((track: any, index: any) => (
-                  <div key={index} className="mt-2">
-                    <SmallSongDisplay track={track} />
-                  </div>
-                ))}
+                <div key={index} className="mt-2">
+                  <SmallSongDisplay track={track} />
+                </div>
+              ))}
             </div>
           </div>
         ) : (
