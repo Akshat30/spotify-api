@@ -22,13 +22,10 @@ export default handler;
 export const getTopSongs = async (refresh_token: string) => {
   try {
     // Make the request to the Spotify API with the new access token
-    const response = await fetch(TRACKS_ENDPOINT, {
+    const response = await fetch(TRACKS_ENDPOINT+"?limit=10", {
       headers: {
         Authorization: `Bearer ${refresh_token}`,
       },
-      body: JSON.stringify({
-        limit: 10,
-      }),
     });
 
     if (!response.ok) {
