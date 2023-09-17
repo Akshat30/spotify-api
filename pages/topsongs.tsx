@@ -26,7 +26,7 @@ export default function Home() {
           console.error("Error fetching recommendations:", error);
         });
     }
-  }, [time]); // Run this effect whenever the 'data' changes
+  }, [session.status,time]); // Run this effect whenever the 'data' changes
 
   const handleTimeChange = (selectedTime: string) => {
     setTime(selectedTime);
