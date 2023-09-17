@@ -5,6 +5,11 @@ import { useSession } from "next-auth/react";
 import useSWR from "swr";
 import { useEffect, useState } from "react";
 import SignButton from "@/components/SignButton";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "AJ's Spotify Playground"
+};
 
 export default function Home() {
   const session = useSession();
