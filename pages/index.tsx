@@ -16,22 +16,24 @@ export default function Home() {
   const [songData, setSongData] = useState<any | null>(null); // Initialize songData state
 
   useEffect(() => {
-    if (data && data.isPlaying) {
-      // Fetch song recommendations when data is available and isPlaying is true
-      fetch("/api/get-recommendations?id=" + data.id)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error(`Request failed with status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then((responseData) => {
-          // Update songData state with the fetched data
-          setSongData(responseData);
-        })
-        .catch((error) => {
-          console.error("Error fetching recommendations:", error);
-        });
+    if (session.status === "authenticated") {
+      if (data && data.isPlaying) {
+        // Fetch song recommendations when data is available and isPlaying is true
+        fetch("/api/get-recommendations?id=" + data.id)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`Request failed with status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((responseData) => {
+            // Update songData state with the fetched data
+            setSongData(responseData);
+          })
+          .catch((error) => {
+            console.error("Error fetching recommendations:", error);
+          });
+      }
     }
   }, [data]); // Run this effect whenever the 'data' changes
 
