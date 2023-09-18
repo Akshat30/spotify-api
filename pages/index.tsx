@@ -53,7 +53,7 @@ export default function Home() {
           src={session.data.user?.image || ""}
         />
       ) : null}
-      <h1 className="text-4xl text-green-300 font-semibold">
+      <h1 className="text-4xl text-green-300 font-semibold mt-2">
         Welcome
         {session.status === "authenticated"
           ? " " + session.data.user?.name || " friend"

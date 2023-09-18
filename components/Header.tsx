@@ -61,19 +61,19 @@ const Header = () => {
         >
           <Link
             href="/recommendations"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
           >
             recommendations
           </Link>
           <Link
             href="/topsongs"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
           >
             top songs
           </Link>
           <Link
             href="/topartists"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2  border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
           >
             top artists
           </Link>
@@ -83,19 +83,19 @@ const Header = () => {
         <div className="font-general-medium hidden m-0 sm:ml-4 mt-5 sm:mt-3 sm:flex p-5 sm:p-0 justify-center items-center shadow-lg sm:shadow-none">
           <Link
             href="/recommendations"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2 duration-300"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2 duration-300"
           >
             recommendations
           </Link>
           <Link
             href="/topsongs"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2 duration-300"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2 duration-300"
           >
             top songs
           </Link>
           <Link
             href="/topartists"
-            className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2 duration-300"
+            className="block text-left text-lg text-primary-dark hover:text-green-600  sm:mx-4 mb-2 sm:py-2 duration-300"
           >
             top artists
           </Link>
