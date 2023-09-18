@@ -94,7 +94,7 @@ const Header = () => {
             top songs
           </Link>
           <Link
-            href="/topsongs"
+            href="/topartists"
             className="block text-left text-lg text-primary-dark dark:text-ternary-light hover:text-green-600  dark:hover:text-green-400  sm:mx-4 mb-2 sm:py-2 duration-300"
           >
             top artists
