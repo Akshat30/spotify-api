@@ -2,20 +2,19 @@ import * as React from "react";
 import SmallSongDisplay from "@/components/SmallSongDisplay";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { FaClock, FaBars, FaThList} from "react-icons/fa";
+import { FaClock, FaBars } from "react-icons/fa";
+import SmallArtistDisplay from "@/components/SmallArtistDisplay";
 
 export default function Home() {
   const session = useSession();
 
   const [songData, setSongData] = useState<any | null>(null); // Initialize songData state
   const [time, setTime] = useState<string | null>("short_term");
-  const [limit, setLimit] = useState<string | null>("10");
+  const [limit, setLimit] = useState<string | null>("5");
 
   useEffect(() => {
     if (session.status === "authenticated") {
-      fetch(
-        "/api/top-songs" + "?type=tracks" + "&limit=" + limit + "&time=" + time
-      )
+      fetch("/api/top-songs" + "?type=artists" + "&limit=" + limit + "&time=" + time)
         .then((response) => {
           if (!response.ok) {
             throw new Error(`Request failed with status: ${response.status}`);
@@ -30,7 +29,7 @@ export default function Home() {
           console.error("Error fetching recommendations:", error);
         });
     }
-  }, [session.status,time,limit]); // Run this effect whenever the 'data' changes
+  }, [session.status, time, limit]); // Run this effect whenever the 'data' changes
 
   const handleTimeChange = () => {
     if (time === "short_term") {
@@ -43,12 +42,12 @@ export default function Home() {
   };
 
   const handleLimitChange = () => {
-    if (limit === "10") {
-      setLimit("25");
-    } else if (limit === "25") {
-      setLimit("50");
-    } else {
+    if (limit === "5") {
       setLimit("10");
+    } else if (limit === "10") {
+      setLimit("20");
+    } else {
+      setLimit("5");
     }
   };
 
@@ -59,7 +58,7 @@ export default function Home() {
           ? session.data.user?.name || "friend"
           : "stranger"}
         &apos;s */}
-        your top songs
+        your top artists
       </h1>
       <div>
         {session.status === "authenticated" ? (
@@ -82,17 +81,17 @@ export default function Home() {
                 className="sm:text-md bg-green-500 font-semibold hover:bg-green-700 text-white py-2 px-3 rounded-lg transition duration-300"
               >
                 <FaBars className="inline mr-2"></FaBars>
-                {limit === "10"
-                  ? "10 songs"
-                  : limit === "25"
-                  ? "25 songs"
-                  : "50 songs"}
+                {limit === "5"
+                  ? "5 artists"
+                  : limit === "10"
+                  ? "10 artists"
+                  : "20 artists"}
               </button>
             </div>
             <div className="flex flex-col mt-8 items-center justify-center mb-12">
-              {songData?.map((track: any, index: any) => (
-                <div key={index} className="mt-2">
-                  <SmallSongDisplay track={track} />
+              {songData?.map((artist: any, index: any) => (
+                <div key={index} className="mt-4">
+                  <SmallArtistDisplay artist={artist} />
                 </div>
               ))}
             </div>

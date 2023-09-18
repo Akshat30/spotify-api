@@ -3,48 +3,47 @@ import { getSession } from "next-auth/react";
 import { authOptions } from "./auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 
-const TRACKS_ENDPOINT = `https://api.spotify.com/v1/me/top/`;
+const REC_ENDPOINT = `https://api.spotify.com/v1/recommendations?`;
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const query = req.query;
-  let time, limit, type;
+  let genre;
+  let sort;
 
-  if (Array.isArray(query.time)) {
-    time = query.time[0];
+  if (Array.isArray(query.genre)) {
+    genre = query.genre[0];
   } else {
-    time = query.time;
+    genre = query.genre;
   }
 
-  if (Array.isArray(query.limit)) {
-    limit = query.limit[0];
+  if (Array.isArray(query.sort)) {
+    sort = query.sort[0];
   } else {
-    limit = query.limit;
+    sort = query.sort;
   }
-
-  if (Array.isArray(query.type)) {
-    type = query.type[0];
-  } else {
-    type = query.type;
-  }
-
+    
   const sess = await getServerSession(req, res, authOptions);
   const accesstoken = sess?.accessToken;
 
   if (req.method === "GET") {
-    const response = await getTopSongs(accesstoken!, time!, limit!, type!);
+    const response = await getNowPlaying(accesstoken!, genre!, sort!);
     const parsed = await response.json();
 
-    return res.status(200).json(parsed.items);
+    const data = {
+      tracks: parsed.tracks,
+    };
+
+    return res.status(200).json(parsed.tracks);
   }
 };
 
 export default handler;
 
-export const getTopSongs = async (refresh_token: string, time: string, limit : string, type: string) => {
+export const getNowPlaying = async (refresh_token: string, genre: string, sort: string) => {
   try {
     // Make the request to the Spotify API with the new access token
     const response = await fetch(
-      TRACKS_ENDPOINT + type + "?limit=" + limit + "&time_range=" + time,
+      REC_ENDPOINT + "limit=10&market=ES&" + "seed_genres=" + genre + "&" + sort,
       {
         headers: {
           Authorization: `Bearer ${refresh_token}`,
