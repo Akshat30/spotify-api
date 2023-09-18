@@ -53,7 +53,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <h1 className="text-4xl text-green-300 font-semibold">
         {/* {session.status === "authenticated"
           ? session.data.user?.name || "friend"

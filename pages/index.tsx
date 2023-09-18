@@ -70,7 +70,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col mt-8 items-center justify-center">
-              <h3 className="text-xl text-white-300 font-semibold mb-2">
+              <h3 className="text-xl text-white-300 font-semibold mb-4">
                 Currently listening to:
               </h3>
               <CurrentSong track={data} />
