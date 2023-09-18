@@ -11,19 +11,21 @@ export default function CurrentSong({track}:{track:any}) {
           ? track.songUrl
           : "https://open.spotify.com/user/31kdt6sl2iasi2mhtuxdpkqqscoa?si=75a37c65ed884222"
       }
-      className="flex relative bg-neutral-900 items-center space-x-4 w-72 rounded-lg hover:bg-neutral-800 transition duration-300"
+      className="flex border-2 border-zinc-800 relative bg-neutral-900 items-center space-x-4 w-72 rounded-lg hover:bg-zinc-800 transition duration-300"
     >
-      <div className="w-16">
-        {track?.isPlaying ? (
+      {track?.isPlaying ? (
+        <div className="w-16">
           <img
-            className="w-16 shadow-sm rounded-lg"
+            className="w-16 rounded-lg"
             src={track?.albumImageUrl}
             alt={track?.album}
           />
-        ) : (
-          <SiSpotify size={64} color={"#1ED760"} />
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="w-16 px-4 py-4 mr-4">
+          <SiSpotify size={48} color={"#1ED760"} />
+        </div>
+      )}
       <div className="flex flex-row">
         <div className="flex-1">
           <p className="component font-bold">
