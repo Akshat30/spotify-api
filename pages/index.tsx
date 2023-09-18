@@ -40,7 +40,7 @@ export default function Home() {
           });
       }
     }
-  }, [data]); // Run this effect whenever the 'data' changes
+  }, [session.status, data]); // Run this effect whenever the 'data' changes
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">

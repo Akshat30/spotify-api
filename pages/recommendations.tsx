@@ -128,8 +128,9 @@ export default function Home() {
                       aria-orientation="vertical"
                       aria-labelledby="dropdown-button"
                     >
-                      {genres.map((genre) => (
+                      {genres.map((genre, index) => (
                         <button
+                          key={index}
                           onClick={() => handleGenreClick(genre)}
                           className="block text-center w-full border-t rounded-lg px-4 py-2 text-xs text-gray-700 bg-gray-100 hover:bg-gray-300 hover:text-gray-900"
                           role="menuitem"
@@ -146,8 +147,9 @@ export default function Home() {
               </div>
             </div>
             <div className="mt-8 w-84 flex flex-wrap gap-4 justify-center items-center">
-              {Object.entries(sorts).map(([key]) => (
+              {Object.entries(sorts).map(([key], index) => (
                 <button
+                  key={index}
                   onClick={() => handleSortClick(key)}
                   className={`sm:text-sm font-regular py-1 px-2 rounded-lg transition duration-300 ${
                     key === sort
